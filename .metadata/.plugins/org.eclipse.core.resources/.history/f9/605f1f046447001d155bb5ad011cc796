@@ -1,0 +1,260 @@
+package grafica.ventana;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import grafica.controladores.mascotasActions;
+
+public class MascotasFrame {
+
+	private JFrame frame;
+	private JTextField textCedula;
+	private JTextField textApodo;
+	private JTextField textRaza;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MascotasFrame window = new MascotasFrame();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MascotasFrame() {
+		
+		initialize();
+		frame.setVisible(true);
+	}
+	
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(30, 144, 255));
+		frame.setBounds(100, 100, 450, 359);
+		frame.getContentPane().setLayout(null);
+		
+		
+		
+		
+		UIManager.put("TabbedPane.selected", Color.WHITE);
+		
+
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		
+		tabbedPane.setName("tabbedPane");
+		tabbedPane.setRequestFocusEnabled(false);
+		tabbedPane.setFocusable(false);
+		tabbedPane.setMinimumSize(new Dimension(10, 10));
+		tabbedPane.setPreferredSize(new Dimension(10, 10));
+		tabbedPane.setBackground(Color.LIGHT_GRAY);
+		tabbedPane.setBounds(0, 0, 434, 320);
+		frame.getContentPane().add(tabbedPane);
+		
+		/////////////////////////////////////////////////////////
+		JPanel nuevo = new JPanel();
+		nuevo.setName("Nueva Mascota");
+		nuevo.setBackground(new Color(60, 179, 113));
+		
+		nuevo.setLayout(null);
+		
+		
+		
+		textCedula = new JTextField();
+		textCedula.setName("cedula");
+		textCedula.addFocusListener(getTextFieldFocusAdapter());
+		textCedula.setToolTipText("Cedula en sin puntos ni guiones");
+		textCedula.setHorizontalAlignment(SwingConstants.RIGHT);
+		textCedula.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		textCedula.setForeground(Color.LIGHT_GRAY);
+		textCedula.setText("...cedula");
+		textCedula.setBounds(215, 29, 135, 27);
+		nuevo.add(textCedula);
+		textCedula.setColumns(10);
+		
+		JLabel lblCedula = new JLabel("Cedula del dueño");
+		lblCedula.setLabelFor(textCedula);
+		lblCedula.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblCedula.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCedula.setBounds(53, 29, 152, 27);
+		nuevo.add(lblCedula);
+		
+		textApodo = new JTextField();
+		textApodo.setName("apodo");
+		textApodo.addFocusListener(getTextFieldFocusAdapter());
+		textApodo.setToolTipText("Cedula en sin puntos ni guiones");
+		textApodo.setText("...apodo");
+		textApodo.setHorizontalAlignment(SwingConstants.RIGHT);
+		textApodo.setForeground(Color.LIGHT_GRAY);
+		textApodo.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		textApodo.setColumns(10);
+		textApodo.setBounds(215, 100, 135, 27);
+		nuevo.add(textApodo);
+		
+		JLabel lblApodo = new JLabel("Apodo");
+		lblApodo.setLabelFor(textApodo);
+		lblApodo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblApodo.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblApodo.setBounds(53, 99, 152, 27);
+		nuevo.add(lblApodo);
+		
+		textRaza = new JTextField();
+		textRaza.setName("raza");
+		
+		
+		textRaza.addFocusListener(getTextFieldFocusAdapter());
+		
+		textRaza.setToolTipText("Cedula en sin puntos ni guiones");
+		textRaza.setText("...raza");
+		textRaza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textRaza.setForeground(Color.LIGHT_GRAY);
+		textRaza.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		textRaza.setColumns(10);
+		textRaza.setBounds(215, 167, 135, 27);
+		nuevo.add(textRaza);
+		
+		JLabel lblRaza = new JLabel("Raza");
+		lblRaza.setLabelFor(textRaza);
+		lblRaza.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRaza.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblRaza.setBounds(53, 166, 152, 27);
+		nuevo.add(lblRaza);
+		
+		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.addMouseListener(getBtnMouseAdapter());
+		
+		btnIngresar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnIngresar.setBackground(Color.LIGHT_GRAY);
+		btnIngresar.setBounds(169, 218, 89, 23);
+		btnIngresar.setActionCommand("Ingresar");
+		nuevo.add(btnIngresar);
+		
+		//////////////////////////////////////////////////////////////////////////////
+		
+		tabbedPane.addTab("Nueva Mascota", null, nuevo, null);
+		
+		tabbedPane.setForegroundAt(0, new Color(255, 255, 255));
+		tabbedPane.setBackgroundAt(0, Color.LIGHT_GRAY);
+		
+		
+		JPanel nuevo_1 = new JPanel();
+		nuevo_1.setName("Hola");
+		nuevo_1.setBackground(new Color(60, 179, 113));
+		tabbedPane.addTab("New tab", null, nuevo_1, null);
+		tabbedPane.setBackgroundAt(1, Color.LIGHT_GRAY);
+		
+		frame.setJMenuBar(new MenuBar(tabbedPane));
+		
+		
+		
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				JPanel selected = (JPanel) tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+				String title = selected.getName();
+				tabbedPane.setTabComponentAt(tabbedPane.getSelectedIndex(), TitlePanel.getCloseTitlePanel(tabbedPane, selected, title));
+				
+				for(int i = 0; i < tabbedPane.getTabCount(); i++)
+				{
+					if (i != tabbedPane.getSelectedIndex())
+					{
+							
+						String name = tabbedPane.getComponentAt(i).getName();
+						tabbedPane.setTabComponentAt(i, TitlePanel.getNormalTitlePanel(tabbedPane, name));
+						tabbedPane.setBackgroundAt(i, Color.LIGHT_GRAY);
+					}
+				}
+			}
+		});
+
+		
+		
+	}
+
+	public static JPanel nuevaMascota() {
+		
+		JPanel nuevo = new JPanel();
+		nuevo.setName("Mascota nueva");
+		nuevo.setBackground(new Color(60, 179, 113));
+		nuevo.setLayout(null);
+		
+		return nuevo;
+	}
+	
+	public FocusAdapter getTextFieldFocusAdapter() {
+		
+		FocusAdapter faTextFields = new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				JTextField text = (JTextField) e.getComponent();
+				text.setText("");
+				text.setForeground(Color.BLACK);
+				
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				JTextField text = (JTextField) e.getComponent();
+				
+				if(text.getText().length() < 1)
+				{
+					text.setText("..." + e.getComponent().getName());
+					text.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		};
+		
+		return faTextFields;
+	}
+	
+	public MouseAdapter getBtnMouseAdapter() {
+		MouseAdapter btnMouseAdapter = new MouseAdapter(){
+			@Override
+			public void mousePressed(MouseEvent e) {
+			
+				JButton btn = (JButton) e.getComponent();
+				btn.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			
+				JButton btn = (JButton) e.getComponent();
+				btn.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+			}
+		};
+		return btnMouseAdapter;
+	}
+}
+

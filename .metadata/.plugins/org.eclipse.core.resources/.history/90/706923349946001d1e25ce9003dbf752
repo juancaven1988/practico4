@@ -1,0 +1,29 @@
+package grafica.controladores;
+
+import javax.swing.JFrame;
+
+import grafica.ventana.DuenosFrame;
+import grafica.ventana.MascotasFrame;
+
+public class mainWindowController  {
+	
+	DuenosFrame duenos;
+	MascotasFrame mascotas;
+
+	public void openPanelDuenos(JFrame mainFrame) {
+		
+		mainFrame.setVisible(false);
+		duenos = new DuenosFrame();
+		
+	}
+
+	public void openPanelMascotas(JFrame mainFrame) {
+		
+		mainFrame.setVisible(false);
+		mascotas = new MascotasFrame();
+		
+	}
+	
+
+	
+}

@@ -1,0 +1,464 @@
+package grafica.ventana;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
+
+import grafica.controladores.Controller;
+
+public class MascotasFrame {
+
+	private JFrame frame;
+	
+	
+
+	
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MascotasFrame window = new MascotasFrame();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MascotasFrame() {
+		
+		initialize();
+		frame.setVisible(true);
+	}
+	
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(30, 144, 255));
+		frame.setBounds(100, 100, 450, 359);
+		frame.getContentPane().setLayout(null);
+		
+		
+		
+		
+		UIManager.put("TabbedPane.selected", Color.WHITE);
+		
+
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		
+		tabbedPane.setName("tabbedPane");
+		tabbedPane.setRequestFocusEnabled(false);
+		tabbedPane.setFocusable(false);
+		tabbedPane.setMinimumSize(new Dimension(10, 10));
+		tabbedPane.setPreferredSize(new Dimension(10, 10));
+		tabbedPane.setBackground(Color.LIGHT_GRAY);
+		tabbedPane.setBounds(0, 0, 434, 320);
+		frame.getContentPane().add(tabbedPane);
+		
+		
+		
+
+		///////////////////////////////////
+		
+		frame.setJMenuBar(new MenuBar(tabbedPane));
+		
+		JPanel nuevo = new JPanel();
+		nuevo.setBackground(new Color(60, 179, 113));;
+		nuevo.setName("Buscar Mascota");
+		
+		JTextField textCedula = new JTextField();
+		textCedula.setName("cedula");
+		textCedula.addFocusListener(getTextFieldFocusAdapter());
+		textCedula.setToolTipText("Cedula con formato X.XXX.XXX-X");
+		textCedula.setHorizontalAlignment(SwingConstants.RIGHT);
+		textCedula.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		textCedula.setForeground(Color.LIGHT_GRAY);
+		textCedula.setText("...cedula");
+		textCedula.setBounds(215, 29, 135, 27);
+		textCedula.addFocusListener(getTextFieldFocusAdapter());
+		nuevo.add(textCedula);
+		textCedula.setColumns(10);
+		
+		JLabel lblCedula = new JLabel("Cedula del dueño");
+		lblCedula.setLabelFor(textCedula);
+		lblCedula.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblCedula.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCedula.setBounds(53, 29, 152, 27);
+		nuevo.add(lblCedula);
+		
+nuevo.setLayout(null);
+		
+		JTextField txtnumInscripcion = new JTextField();
+		txtnumInscripcion.setToolTipText("Debe ser un entero positivo");
+		txtnumInscripcion.setText("...num Inscripcion");
+		txtnumInscripcion.setName("num Inscripcion");
+		txtnumInscripcion.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtnumInscripcion.setForeground(Color.LIGHT_GRAY);
+		txtnumInscripcion.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		txtnumInscripcion.setColumns(10);
+		txtnumInscripcion.setBounds(215, 94, 135, 27);
+		txtnumInscripcion.addFocusListener(getTextFieldFocusAdapter());
+		nuevo.add(txtnumInscripcion);
+		
+		JLabel lblNumInsc = new JLabel("Num. Inscripciion");
+		lblNumInsc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumInsc.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblNumInsc.setBounds(53, 94, 152, 27);
+		nuevo.add(lblNumInsc);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(53, 146, 297, 54);
+		nuevo.add(scrollPane);
+		
+		JTable table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Apodo", "Raza"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane.setViewportView(table_1);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBackground(Color.LIGHT_GRAY);
+		btnBuscar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnBuscar.setBounds(150, 219, 115, 27);
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnBuscar.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+				btnBuscar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+				JTextField[] fields = {textCedula,txtnumInscripcion };
+				String[] regex = {"[0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9]","[a-zA-Z]+","[a-zA-Z]+","[0-9]+"};
+				
+				boolean correcto = formValido(fields, regex);
+			}
+		});
+		nuevo.add(btnBuscar);
+		
+		////////////////////////////////////////
+		tabbedPane.addTab("Buscar Mascota", null, nuevo, null);
+		
+		
+		
+		
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				JPanel selected = (JPanel) tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+				String title = selected.getName();
+				tabbedPane.setTabComponentAt(tabbedPane.getSelectedIndex(), TitlePanel.getCloseTitlePanel(tabbedPane, selected, title));
+				
+				for(int i = 0; i < tabbedPane.getTabCount(); i++)
+				{
+					if (i != tabbedPane.getSelectedIndex())
+					{
+							
+						String name = tabbedPane.getComponentAt(i).getName();
+						tabbedPane.setTabComponentAt(i, TitlePanel.getNormalTitlePanel(tabbedPane, name));
+						tabbedPane.setBackgroundAt(i, Color.LIGHT_GRAY);
+					}
+				}
+			}
+		});
+
+		
+		
+	}
+
+	public static JPanel nuevaMascota(Controller controller) {
+		
+		JPanel nuevo = new JPanel();
+		nuevo.setName("Nueva Mascota");
+		nuevo.setBackground(new Color(60, 179, 113));
+		
+		nuevo.setLayout(null);
+		
+		
+		
+		
+		JTextField textCedula = new JTextField();
+		textCedula.setName("cedula");
+		textCedula.addFocusListener(getTextFieldFocusAdapter());
+		textCedula.setToolTipText("Cedula con formato X.XXX.XXX-X");
+		textCedula.setHorizontalAlignment(SwingConstants.RIGHT);
+		textCedula.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		textCedula.setForeground(Color.LIGHT_GRAY);
+		textCedula.setText("...cedula");
+		textCedula.setBounds(215, 29, 135, 27);
+		nuevo.add(textCedula);
+		textCedula.setColumns(10);
+		
+		JLabel lblCedula = new JLabel("Cedula del dueño");
+		lblCedula.setLabelFor(textCedula);
+		lblCedula.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblCedula.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCedula.setBounds(53, 29, 152, 27);
+		nuevo.add(lblCedula);
+		
+		JTextField textApodo = new JTextField();
+		textApodo.setName("apodo");
+		textApodo.addFocusListener(getTextFieldFocusAdapter());
+		textApodo.setToolTipText("No debe contener caracteres especiales ni numeros");
+		textApodo.setText("...apodo");
+		textApodo.setHorizontalAlignment(SwingConstants.RIGHT);
+		textApodo.setForeground(Color.LIGHT_GRAY);
+		textApodo.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		textApodo.setColumns(10);
+		textApodo.setBounds(215, 100, 135, 27);
+		nuevo.add(textApodo);
+		
+		JLabel lblApodo = new JLabel("Apodo");
+		lblApodo.setLabelFor(textApodo);
+		lblApodo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblApodo.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblApodo.setBounds(53, 99, 152, 27);
+		nuevo.add(lblApodo);
+		
+		JTextField textRaza = new JTextField();
+		textRaza.setName("raza");
+		
+		
+		textRaza.addFocusListener(getTextFieldFocusAdapter());
+		
+		textRaza.setToolTipText("No debe contener caracteres especiales ni numeros");
+		textRaza.setText("...raza");
+		textRaza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textRaza.setForeground(Color.LIGHT_GRAY);
+		textRaza.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		textRaza.setColumns(10);
+		textRaza.setBounds(215, 167, 135, 27);
+		nuevo.add(textRaza);
+		
+		JLabel lblRaza = new JLabel("Raza");
+		lblRaza.setLabelFor(textRaza);
+		lblRaza.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRaza.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblRaza.setBounds(53, 166, 152, 27);
+		nuevo.add(lblRaza);
+		
+		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnIngresar.setBackground(Color.LIGHT_GRAY);
+		btnIngresar.setBounds(169, 218, 89, 23);
+		nuevo.add(btnIngresar);
+		
+		btnIngresar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnIngresar.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			
+				int cedula;
+				String raza;
+				String apodo;
+				String[] regex = {"[0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9]","[a-zA-Z]+","[a-zA-Z]+"};
+				JTextField[] fields = {textCedula,textRaza,textApodo};
+				
+				boolean correcto = formValido(fields,regex);
+				
+				btnIngresar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+				
+				if(correcto)
+				{
+				   cedula = Integer.parseInt(textCedula.getText().replaceAll("[^0-9]", ""));
+					raza = textRaza.getText();
+					apodo = textApodo.getText();
+					//controller.IngresarMascota(cedula,raza,apodo);
+					reiniciarFormulario(fields);
+				}
+				
+			}
+			
+		});
+		
+		
+		return nuevo;
+	}
+	
+	
+public static JPanel listaMascota(Controller controller) {
+		
+	JPanel nuevo = new JPanel();
+	nuevo.setName("Listar Mascotas");
+	nuevo.setBackground(new Color(60, 179, 113));
+	nuevo.setLayout(null);
+	
+	JScrollPane scrollPane = new JScrollPane();
+	scrollPane.setBounds(54, 72, 313, 152);
+	nuevo.add(scrollPane);
+	
+	JTable table = new JTable();
+	table.setGridColor(Color.BLACK);
+	table.setFont(new Font("Microsoft Tai Le", Font.PLAIN, 14));
+	table.setModel(new DefaultTableModel(
+		new Object[][] {
+		},
+		new String[] {
+			"Apodo", "Raza", "Num Inscripcion"
+		}
+	) {
+		Class[] columnTypes = new Class[] {
+			String.class, String.class, Integer.class
+		};
+		public Class getColumnClass(int columnIndex) {
+			return columnTypes[columnIndex];
+		}
+		boolean[] columnEditables = new boolean[] {
+			false, true, true
+		};
+		public boolean isCellEditable(int row, int column) {
+			return columnEditables[column];
+		}
+	});
+	table.getColumnModel().getColumn(2).setPreferredWidth(91);
+	scrollPane.setViewportView(table);
+	
+	JLabel lblTitle = new JLabel("Mascotas de :");
+	lblTitle.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+	lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+	lblTitle.setBounds(54, 11, 313, 25);
+	nuevo.add(lblTitle);
+	
+	JTextField textCedula = new JTextField();
+	textCedula.addFocusListener(getTextFieldFocusAdapter());
+	textCedula.setHorizontalAlignment(SwingConstants.RIGHT);
+	textCedula.setName("cedula");
+	textCedula.setText("...cedula");
+	textCedula.setForeground(Color.LIGHT_GRAY);
+	textCedula.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+	textCedula.setBounds(152, 41, 116, 20);
+	nuevo.add(textCedula);
+	textCedula.setColumns(10);
+	
+	JButton btnCargar = new JButton("Cargar");
+	btnCargar.setBackground(Color.LIGHT_GRAY);
+	btnCargar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+	btnCargar.setBounds(169, 235, 89, 23);
+	nuevo.add(btnCargar);
+	
+	btnCargar.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mousePressed(MouseEvent e) {
+			btnCargar.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		}
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			btnCargar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+			JTextField[] fields = {textCedula};
+			String[] regex = {"[0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]-[0-9]"};
+			boolean correcto = formValido(fields,regex);
+			
+			if(correcto)
+			{
+				//controller.listarMascotas(textCedula, table);
+			}
+		}
+	});
+	
+		
+		
+		return nuevo;
+	}
+	
+	
+	public static FocusAdapter getTextFieldFocusAdapter() {
+		
+		FocusAdapter faTextFields = new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				JTextField text = (JTextField) e.getComponent();
+				text.setText("");
+				text.setForeground(Color.BLACK);
+				text.setFont(new Font("Microsoft Tai Le",0, 14));
+				
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				JTextField text = (JTextField) e.getComponent();
+				
+				if(text.getText().length() < 1)
+				{
+					text.setText("..." + e.getComponent().getName());
+					text.setForeground(Color.LIGHT_GRAY);
+				}
+			}
+		};
+		
+		return faTextFields;
+	}
+	
+	public static boolean formValido (JTextField[] fields, String[] regex) {
+		
+		boolean resp = true;
+		
+		for(int i = 0; i < fields.length; i++)
+		{
+			if(!fields[i].getText().matches(regex[i]))
+			{
+				resp = false;
+				fields[i].setForeground(Color.RED);
+			}
+		}
+		
+		return resp;
+	}
+	
+	public static void reiniciarFormulario(JTextField[] fields) {
+		for(JTextField field : fields)
+		{
+			field.setText("..." + field.getName());
+			field.setForeground(Color.LIGHT_GRAY);
+			field.setFont(null);
+			field.setFont(new Font("Microsoft Tai Le", Font.ITALIC, 14));
+		}
+	}
+}
+

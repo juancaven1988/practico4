@@ -1,0 +1,24 @@
+package grafica.controladores;
+
+public class MenuController {
+
+	
+	private static MenuController instancia;
+	private DuenosController duenos;
+	private MascotasController mascotas;
+	
+	private MenuController()
+	{
+		duenos = new DuenosController();
+		mascotas = new MascotasController();
+	}
+	
+	public static MenuController getInstancia() {
+		if(instancia == null)
+		{
+			instancia = new MenuController();
+		}
+		
+		return instancia;
+	}
+}

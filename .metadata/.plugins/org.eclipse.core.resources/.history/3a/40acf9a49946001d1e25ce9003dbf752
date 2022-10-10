@@ -1,0 +1,9 @@
+package grafica.controladores;
+
+public class duenosController {
+	
+	public void close(Jframe duenos) {
+		
+	}
+
+}

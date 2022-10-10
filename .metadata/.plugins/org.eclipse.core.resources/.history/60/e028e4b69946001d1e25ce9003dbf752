@@ -1,0 +1,16 @@
+package grafica.controladores;
+
+import javax.swing.JFrame;
+
+import grafica.ventana.MainWindow;
+
+public class duenosController {
+	
+	public void close(JFrame duenos) {
+		
+		
+		MainWindow main = new MainWindow();
+		duenos.dispose();
+	}
+
+}

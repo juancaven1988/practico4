@@ -1,0 +1,19 @@
+package grafica.controladores;
+
+import javax.swing.JFrame;
+
+import grafica.ventana.MainWindow;
+
+public class MascotasController {
+
+	
+	public voidclose(JFrame mascotas) {
+		
+		
+		MainWindow main = new MainWindow();
+		mascotas.dispose();
+		
+		
+	}
+	
+}

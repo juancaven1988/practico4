@@ -1,0 +1,225 @@
+package grafica.ventana;
+
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Cursor;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+
+import grafica.controladores.MenuController;
+import grafica.controladores.mainWindowController;
+
+public class MainWindow  {
+
+	
+	private JFrame mainFrame;
+	private mainWindowController controller;
+	private MenuController menu;
+	JButton btnDuenos;
+	JButton btnMascotas;
+	JMenuBar menuBar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainWindow window = new MainWindow();
+					window.mainFrame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
+	
+	/**
+	 * Create the application.
+	 */
+	public MainWindow() {
+		initialize();
+		controller = new mainWindowController();
+		menu = new MenuController();
+		mainFrame.setVisible(true);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		mainFrame = new JFrame();
+		
+	
+		mainFrame.setResizable(false);
+		mainFrame.setForeground(new Color(30, 144, 255));
+		mainFrame.setTitle("ConcursoMascota");
+		mainFrame.getContentPane().setBackground(new Color(100, 149, 237));
+		mainFrame.getContentPane().setLayout(null);
+		
+		btnDuenos = new JButton("<html><p>-Menú-</p><p>Dueños</p></html>");	
+		btnDuenos.setBackground(Color.LIGHT_GRAY);
+		btnDuenos.setVerticalTextPosition(SwingConstants.TOP);
+		btnDuenos.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnDuenos.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		btnDuenos.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		btnDuenos.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnDuenos.setFont(new Font("Microsoft Tai Le", Font.BOLD, 15));
+		btnDuenos.setToolTipText("Acceso a las opciones relacionadas a dueños");
+		btnDuenos.setBounds(40, 60, 120, 80);
+		mainFrame.getContentPane().add(btnDuenos);
+		
+		btnMascotas = new JButton("<html><p>-  Menú -</p><p>Mascotas</p></html>");
+		btnMascotas.setBackground(Color.LIGHT_GRAY);
+		btnMascotas.setToolTipText("Acceso a las opciones relacionadas a dueños");
+		btnMascotas.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnMascotas.setFont(new Font("Microsoft Tai Le", Font.BOLD, 15));
+		btnMascotas.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		btnMascotas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnMascotas.setBounds(218, 60, 120, 80);
+		mainFrame.getContentPane().add(btnMascotas);
+		mainFrame.setBounds(100, 100, 400, 250);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/grafica/imagenes/dogIcon.png")));
+		mainFrame.setLocationRelativeTo(null);
+		
+		menuBar = new JMenuBar();
+		menuBar.setBorderPainted(false);
+		menuBar.setBorder(null);
+		menuBar.setBackground(new Color(255, 255, 255));
+		mainFrame.setJMenuBar(menuBar);
+		
+		JMenu mnMenu = new JMenu("<html><U>I</U>nicio</html>");
+	
+		mnMenu.setBorder(null);
+		menuBar.add(mnMenu);
+		
+		JMenuItem mntmSalir = new JMenuItem("<html><U>S</U>alir</html>");
+		mntmSalir.setBackground(Color.WHITE);
+		mnMenu.add(mntmSalir);
+		
+		JMenu mndueo = new JMenu("<html><U>D</U>ueño</html>");
+		mndueo.setBorder(null);
+		menuBar.add(mndueo);
+		
+		JMenuItem mntmInsertar = new JMenuItem("Insertar");
+		
+		mntmInsertar.setBackground(Color.WHITE);
+		mndueo.add(mntmInsertar);
+		
+		JMenuItem mntmBorrar = new JMenuItem("Borrar");
+		mntmBorrar.setBackground(Color.WHITE);
+		mndueo.add(mntmBorrar);
+		
+		JMenuItem mntmListar = new JMenuItem("Listar");
+		mntmListar.setBackground(Color.WHITE);
+		mndueo.add(mntmListar);
+		
+		JMenu mnmascotas = new JMenu("<html><U>M</U>ascotas</html>");
+		mnmascotas.setBorder(null);
+		menuBar.add(mnmascotas);
+		
+		JMenuItem mntmInsertar_1 = new JMenuItem("Nueva");
+		mntmInsertar_1.setBackground(Color.WHITE);
+		mnmascotas.add(mntmInsertar_1);
+		
+		JMenuItem mntmInsertar_1_1 = new JMenuItem("Listado");
+		mntmInsertar_1_1.setBackground(Color.WHITE);
+		mnmascotas.add(mntmInsertar_1_1);
+		
+		JMenuItem mntmInsertar_1_1_1 = new JMenuItem("Buscar");
+		mntmInsertar_1_1_1.setBackground(Color.WHITE);
+		mnmascotas.add(mntmInsertar_1_1_1);
+		
+		JMenuItem mntmInsertar_1_1_1_1 = new JMenuItem("Contar");
+		mntmInsertar_1_1_1_1.setBackground(Color.WHITE);
+		mnmascotas.add(mntmInsertar_1_1_1_1);
+		
+		
+		btnDuenos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnDuenos.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				btnDuenos.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+				controller.openPanelDuenos(mainFrame);
+			}
+		});
+		
+		btnMascotas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnMascotas.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				btnMascotas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+				controller.openPanelMascotas(mainFrame);
+				
+			}
+		});
+		
+		KeyAdapter keyListener = new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyChar() == 'i')
+				{
+					menuBar.getMenu(0).doClick();
+				}
+				if(e.getKeyChar() == 'd')
+				{
+					menuBar.getMenu(1).doClick();
+				}
+				if(e.getKeyChar() == 'm')
+				{
+					menuBar.getMenu(2).doClick();
+				}
+				if(e.getKeyChar() == 's')
+				{
+					System.exit(0);
+				}
+			}
+		};
+		
+		mntmSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void  mousePressed(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		mntmInsertar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				menu.insertarDueno(null);
+			}
+		});
+		
+	
+		
+		btnDuenos.addKeyListener(keyListener);
+		btnMascotas.addKeyListener(keyListener);
+		menuBar.addKeyListener(keyListener);
+	}
+
+	
+}

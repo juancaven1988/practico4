@@ -1,0 +1,28 @@
+package grafica.controladores;
+
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+
+public class mascotasActions  {
+
+	
+	public static Action insertarMascota(String name)
+	{
+		Action aL = new AbstractAction(name) {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Ingresar");
+				
+			}};
+		
+		return aL;
+	}
+
+
+	
+}

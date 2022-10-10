@@ -1,0 +1,22 @@
+package grafica.controladores;
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+
+public class mascotasActions extends AbstractAction {
+
+	
+	public mascotasActions(String text)
+	{
+		super(text);
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Action personalizada /" + e);
+
+	}
+
+}

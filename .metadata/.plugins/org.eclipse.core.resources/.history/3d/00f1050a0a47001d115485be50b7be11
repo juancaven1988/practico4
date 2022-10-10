@@ -1,0 +1,306 @@
+package grafica.ventana;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+
+import grafica.controladores.DuenosController;
+
+public class DuenosFrame {
+
+	private JFrame frameDuenos;
+	private DuenosController controller;
+	private JTextField textCedula;
+	private JTextField textNombre;
+	private JTextField txtIngreseApellido;
+	private JPanel panelPrincipal;
+	private JPanel panelInsertar;
+	private JPanel activo;
+
+	
+	
+	public DuenosFrame() {
+		
+		controller = new DuenosController();
+		initialize();
+        
+		frameDuenos.setVisible(true);
+	}
+	
+	
+	
+	private void initialize() {
+		frameDuenos = new JFrame();
+		frameDuenos.setResizable(false);
+		frameDuenos.setTitle("ConcursoMascota: dueños");
+		frameDuenos.setIconImage(Toolkit.getDefaultToolkit().getImage(DuenosFrame.class.getResource("/grafica/imagenes/dogIcon.png")));
+		frameDuenos.getContentPane().setBackground(new Color(72, 209, 204));
+		
+		panelPrincipal = new JPanel();
+		panelPrincipal.setVisible(false);
+		panelPrincipal.setBounds(0, 0, 384, 375);
+		panelPrincipal.setBackground(new Color(72, 209, 204));
+		
+		panelInsertar = new JPanel();
+		panelInsertar.setVisible(false);
+		panelInsertar.setBackground(new Color(72, 209, 204));
+		panelInsertar.setBounds(0, 0, 384, 375);
+		
+		activo = panelPrincipal;
+		
+		JButton btnListar = new JButton("Listar");
+		btnListar.setBounds(new Rectangle(41, 170, 104, 46));
+		btnListar.setMinimumSize(new Dimension(60, 25));
+		btnListar.setMaximumSize(new Dimension(60, 25));
+		btnListar.setPreferredSize(new Dimension(60, 25));
+		btnListar.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnListar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnListar.setBackground(Color.LIGHT_GRAY);
+		
+		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar.setBounds(new Rectangle(234, 74, 104, 46));
+		btnBorrar.setPreferredSize(new Dimension(60, 25));
+		btnBorrar.setMinimumSize(new Dimension(60, 25));
+		btnBorrar.setMaximumSize(new Dimension(60, 25));
+		btnBorrar.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnBorrar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnBorrar.setBackground(Color.LIGHT_GRAY);
+		
+		JButton btnInsertar = new JButton("Insertar");
+		btnInsertar.setMinimumSize(new Dimension(60, 25));
+		btnInsertar.setMaximumSize(new Dimension(60, 25));
+		btnInsertar.setPreferredSize(new Dimension(60, 25));
+		btnInsertar.setBounds(new Rectangle(41, 74, 104, 46));
+		btnInsertar.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnInsertar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnInsertar.setBackground(Color.LIGHT_GRAY);
+		panelPrincipal.setLayout(null);
+		panelPrincipal.add(btnListar);
+		panelPrincipal.add(btnBorrar);
+		panelPrincipal.add(btnInsertar);
+		
+		JButton btnMascotas = new JButton("Mascotas");
+		btnMascotas.setPreferredSize(new Dimension(60, 25));
+		btnMascotas.setMinimumSize(new Dimension(60, 25));
+		btnMascotas.setMaximumSize(new Dimension(60, 25));
+		btnMascotas.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnMascotas.setBounds(new Rectangle(144, 215, 104, 46));
+		btnMascotas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnMascotas.setBackground(Color.LIGHT_GRAY);
+		btnMascotas.setBounds(234, 170, 104, 46);
+		panelPrincipal.add(btnMascotas);
+		
+		JButton btnHome = new JButton("Home");
+		btnHome.setPreferredSize(new Dimension(60, 25));
+		btnHome.setMinimumSize(new Dimension(60, 25));
+		btnHome.setMaximumSize(new Dimension(60, 25));
+		btnHome.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnHome.setBounds(new Rectangle(144, 215, 104, 46));
+		btnHome.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnHome.setBackground(Color.LIGHT_GRAY);
+		btnHome.setBounds(140, 262, 104, 46);
+		panelPrincipal.add(btnHome);
+		frameDuenos.getContentPane().setLayout(null);
+		frameDuenos.getContentPane().add(panelInsertar);
+		panelInsertar.setLayout(null);
+		
+		textCedula = new JTextField();
+		textCedula.setForeground(new Color(211, 211, 211));
+		textCedula.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		textCedula.setToolTipText("Ingresar cedula en formato X.XXX.XXX-X");
+		textCedula.setText("ingrese cedula...");
+		textCedula.setBounds(124, 55, 150, 26);
+		panelInsertar.add(textCedula);
+		textCedula.setColumns(10);
+		
+		JLabel lblCedula = new JLabel("Cedula");
+		lblCedula.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblCedula.setLabelFor(textCedula);
+		lblCedula.setBounds(48, 58, 62, 22);
+		panelInsertar.add(lblCedula);
+		
+		textNombre = new JTextField();
+		textNombre.setToolTipText("El nombre no puede contener numeros o simbolos");
+		textNombre.setText("ingrese nombre...");
+		textNombre.setForeground(new Color(211, 211, 211));
+		textNombre.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		textNombre.setColumns(10);
+		textNombre.setBounds(123, 101, 150, 26);
+		panelInsertar.add(textNombre);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setLabelFor(textNombre);
+		lblNombre.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblNombre.setBounds(45, 103, 62, 22);
+		panelInsertar.add(lblNombre);
+		
+		txtIngreseApellido = new JTextField();
+		txtIngreseApellido.setToolTipText("El apellido no puede contener numeros o simbolos");
+		txtIngreseApellido.setText("ingrese apellido...");
+		txtIngreseApellido.setForeground(new Color(211, 211, 211));
+		txtIngreseApellido.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		txtIngreseApellido.setColumns(10);
+		txtIngreseApellido.setBounds(126, 149, 150, 26);
+		panelInsertar.add(txtIngreseApellido);
+		
+		JLabel lblApellido = new JLabel("Apellido");
+		lblApellido.setLabelFor(txtIngreseApellido);
+		lblApellido.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		lblApellido.setBounds(45, 153, 62, 22);
+		panelInsertar.add(lblApellido);
+		
+		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.setPreferredSize(new Dimension(60, 25));
+		btnIngresar.setMinimumSize(new Dimension(60, 25));
+		btnIngresar.setMaximumSize(new Dimension(60, 25));
+		btnIngresar.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnIngresar.setBounds(new Rectangle(41, 170, 104, 46));
+		btnIngresar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnIngresar.setBackground(Color.LIGHT_GRAY);
+		btnIngresar.setBounds(52, 219, 104, 46);
+		panelInsertar.add(btnIngresar);
+		
+		JButton btnRegresar = new JButton("Regresar");
+		btnRegresar.setPreferredSize(new Dimension(60, 25));
+		btnRegresar.setMinimumSize(new Dimension(60, 25));
+		btnRegresar.setMaximumSize(new Dimension(60, 25));
+		btnRegresar.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnRegresar.setBounds(new Rectangle(41, 170, 104, 46));
+		btnRegresar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnRegresar.setBackground(Color.LIGHT_GRAY);
+		btnRegresar.setBounds(223, 217, 104, 46);
+		panelInsertar.add(btnRegresar);
+		frameDuenos.getContentPane().add(panelPrincipal);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 384, 375);
+		frameDuenos.getContentPane().add(tabbedPane);
+		
+		JPanel panelPrincipal_2 = new JPanel();
+		panelPrincipal_2.setLayout(null);
+		panelPrincipal_2.setBackground(new Color(72, 209, 204));
+		tabbedPane.addTab("New tab", null, panelPrincipal_2, null);
+		tabbedPane.setDisabledIconAt(0, new ImageIcon(DuenosFrame.class.getResource("/grafica/imagenes/dogIcon.png")));
+		
+		  JButton closeButton = new JButton("x");
+
+		  closeButton.addMouseListener(new MouseAdapter()
+		  {
+		   @Override
+		   public void mouseClicked(MouseEvent e)
+		   {
+		    tabbedPane.remove(panelPrincipal_2);
+		   }
+		  });
+		  panelPrincipal_2.add(closeButton);
+
+		
+		
+		
+		JButton btnListar_2 = new JButton("Listar");
+		btnListar_2.setPreferredSize(new Dimension(60, 25));
+		btnListar_2.setMinimumSize(new Dimension(60, 25));
+		btnListar_2.setMaximumSize(new Dimension(60, 25));
+		btnListar_2.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnListar_2.setBounds(new Rectangle(41, 170, 104, 46));
+		btnListar_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnListar_2.setBackground(Color.LIGHT_GRAY);
+		btnListar_2.setBounds(41, 170, 104, 46);
+		panelPrincipal_2.add(btnListar_2);
+		
+		JButton btnBorrar_2 = new JButton("Borrar");
+		btnBorrar_2.setPreferredSize(new Dimension(60, 25));
+		btnBorrar_2.setMinimumSize(new Dimension(60, 25));
+		btnBorrar_2.setMaximumSize(new Dimension(60, 25));
+		btnBorrar_2.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnBorrar_2.setBounds(new Rectangle(234, 74, 104, 46));
+		btnBorrar_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnBorrar_2.setBackground(Color.LIGHT_GRAY);
+		btnBorrar_2.setBounds(234, 74, 104, 46);
+		panelPrincipal_2.add(btnBorrar_2);
+		
+		JButton btnInsertar_2 = new JButton("Insertar");
+		btnInsertar_2.setPreferredSize(new Dimension(60, 25));
+		btnInsertar_2.setMinimumSize(new Dimension(60, 25));
+		btnInsertar_2.setMaximumSize(new Dimension(60, 25));
+		btnInsertar_2.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnInsertar_2.setBounds(new Rectangle(41, 74, 104, 46));
+		btnInsertar_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnInsertar_2.setBackground(Color.LIGHT_GRAY);
+		btnInsertar_2.setBounds(41, 74, 104, 46);
+		panelPrincipal_2.add(btnInsertar_2);
+		
+		JButton btnMascotas_2 = new JButton("Mascotas");
+		btnMascotas_2.setPreferredSize(new Dimension(60, 25));
+		btnMascotas_2.setMinimumSize(new Dimension(60, 25));
+		btnMascotas_2.setMaximumSize(new Dimension(60, 25));
+		btnMascotas_2.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnMascotas_2.setBounds(new Rectangle(144, 215, 104, 46));
+		btnMascotas_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnMascotas_2.setBackground(Color.LIGHT_GRAY);
+		btnMascotas_2.setBounds(234, 170, 104, 46);
+		panelPrincipal_2.add(btnMascotas_2);
+		
+		JButton btnHome_2 = new JButton("Home");
+		btnHome_2.setPreferredSize(new Dimension(60, 25));
+		btnHome_2.setMinimumSize(new Dimension(60, 25));
+		btnHome_2.setMaximumSize(new Dimension(60, 25));
+		btnHome_2.setFont(new Font("Microsoft Tai Le", Font.BOLD, 14));
+		btnHome_2.setBounds(new Rectangle(144, 215, 104, 46));
+		btnHome_2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnHome_2.setBackground(Color.LIGHT_GRAY);
+		btnHome_2.setBounds(140, 262, 104, 46);
+		panelPrincipal_2.add(btnHome_2);
+		
+		JPanel panelPrincipal_1 = new JPanel();
+		panelPrincipal_1.setLayout(null);
+		panelPrincipal_1.setBackground(new Color(72, 209, 204));
+		tabbedPane.addTab("New tab", null, panelPrincipal_1, null);
+		frameDuenos.setBounds(100, 100, 400, 436);
+		frameDuenos.setDefaultCloseOperation(0);
+		
+		MenuBar menuBar = new MenuBar(this, null, frameDuenos);
+		frameDuenos.setJMenuBar(menuBar);
+		
+		frameDuenos.addWindowListener(new WindowAdapter() {
+		
+			@Override
+			public void windowClosing(WindowEvent e) {
+				controller.close(frameDuenos);
+			}
+		});
+	}
+
+	
+	public void activarPrincipal() {
+		activo.setVisible(false);
+		panelPrincipal.setVisible(true);
+		activo = panelPrincipal;
+	}
+	
+	public void activarInsertar() {
+		
+		activo.setVisible(false);
+		panelInsertar.setVisible(true);
+		activo = panelInsertar;
+	
+	}
+	
+	
+
+}

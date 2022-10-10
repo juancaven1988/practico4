@@ -1,0 +1,23 @@
+package grafica.controladores;
+
+import javax.swing.JFrame;
+
+import grafica.ventana.DuenosFrame;
+import grafica.ventana.MascotasFrame;
+
+public class MenuController {
+
+	
+	public void insertarDueno(DuenosFrame dueno) {
+		
+		if(dueno == null)
+		{
+			System.out.println("duenos era null");
+			dueno = new DuenosFrame();
+		}
+		
+		dueno.activarInsertar();
+	}
+	
+	
+}

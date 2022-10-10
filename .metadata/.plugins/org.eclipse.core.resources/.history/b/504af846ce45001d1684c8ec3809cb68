@@ -1,0 +1,5 @@
+package logicaPersistencia.excepciones;
+
+public class PersistenciaException extends Exception {
+
+}

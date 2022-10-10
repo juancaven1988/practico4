@@ -1,0 +1,141 @@
+package grafica.controladores;
+
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+import grafica.ventana.DuenosFrame;
+import grafica.ventana.MascotasFrame;
+import grafica.ventana.TitlePanel;
+
+public class MenuController {
+
+	
+	private JTabbedPane tabs;
+	
+	public MenuController(JTabbedPane tabbedPane)
+	{
+		tabs = tabbedPane;
+	}
+	
+	public void insertarDueno(DuenosFrame dueno) {
+	
+	}
+
+	public void nuevaMascota() {
+		
+		String title = "Nueva Mascota";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+		if(i >= 0)
+		{
+			tabs.setSelectedIndex(i);
+		}
+		else
+		{
+			JPanel nuevo = MascotasFrame.nuevaMascota(null);
+			crearNuevoTab(title,borrar,nuevo);
+		}
+		
+	}
+
+	public void listadoMascota() {
+		
+		String title = "Listado Mascotas";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+		if(i >= 0)
+		{
+			tabs.setSelectedIndex(i);
+		}
+		else
+		{
+			JPanel nuevo = MascotasFrame.listaMascota(null);
+			crearNuevoTab(title,borrar,nuevo);
+		}
+		
+		
+	}
+
+	public void buscarMascota() {
+		String title = "Buscar Mascota";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+		
+		
+		if(i >= 0)
+		{
+			tabs.setSelectedIndex(i);
+		}
+		else
+		{
+			JPanel nuevo = MascotasFrame.buscarMascota(null);
+			
+			crearNuevoTab(title,borrar,nuevo);
+		}
+		
+		
+	}
+	
+	public void contarMascota() {
+		String title = "Contar Mascota";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+		
+		
+		if(i >= 0)
+		{
+			tabs.setSelectedIndex(i);
+		}
+		else
+		{
+			JPanel nuevo = MascotasFrame.contarMascota(null);
+			crearNuevoTab(title,borrar,nuevo);
+			System.out.println("else de contar Mascota");
+		}
+		
+		
+	}
+
+	public boolean cambiarVisibilidadTab()
+	{
+		boolean borrar = false;
+		if(!tabs.isVisible())
+		{
+			tabs.setVisible(true);
+			borrar = true;
+			
+		}
+		return borrar;
+	}
+	
+	public void crearNuevoTab(String title,boolean borrar, JPanel nuevo)
+	{
+		tabs.addTab(title, nuevo);
+		int i = tabs.indexOfTab(title);
+		tabs.setTabComponentAt(i, TitlePanel.getCloseTitlePanel(tabs, nuevo, title));
+		tabs.setSelectedIndex(i);
+		if(borrar)
+		{
+			tabs.removeTabAt(0);
+		}
+	}
+
+	public void nuevoDueño() {
+		String title = "Nuevo Dueño";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+		
+		
+		if(i >= 0)
+		{
+			tabs.setSelectedIndex(i);
+		}
+		else
+		{
+			JPanel nuevo = DuenosFrame.nuevoDueno(null);
+			crearNuevoTab(title,borrar,nuevo);
+			System.out.println("else de contar Mascota");
+		}
+		
+	}
+}

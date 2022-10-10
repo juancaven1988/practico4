@@ -1,0 +1,146 @@
+package grafica.controladores;
+
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+import grafica.ventana.DuenosFrame;
+import grafica.ventana.MascotasFrame;
+import grafica.ventana.TitlePanel;
+
+public class MenuController {
+
+	private JTabbedPane tabs;
+	Controller controller;
+
+	public MenuController(JTabbedPane tabbedPane, Controller controller) {
+		tabs = tabbedPane;
+		this.controller = controller;
+	}
+
+	public void insertarDueno(DuenosFrame dueno) {
+
+	}
+
+	public void nuevaMascota() {
+
+		String title = "Nueva Mascota";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+		if (i >= 0) {
+			tabs.setSelectedIndex(i);
+		} else {
+			JPanel nuevo = MascotasFrame.nuevaMascota(controller);
+			crearNuevoTab(title, borrar, nuevo);
+		}
+
+	}
+
+	public void listadoMascota() {
+
+		String title = "Listado Mascotas";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+		if (i >= 0) {
+			tabs.setSelectedIndex(i);
+		} else {
+			JPanel nuevo = MascotasFrame.listaMascota(controller);
+			crearNuevoTab(title, borrar, nuevo);
+		}
+
+	}
+
+	public void buscarMascota() {
+		String title = "Buscar Mascota";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+
+		if (i >= 0) {
+			tabs.setSelectedIndex(i);
+		} else {
+			JPanel nuevo = MascotasFrame.buscarMascota(controller);
+
+			crearNuevoTab(title, borrar, nuevo);
+		}
+
+	}
+
+	public void contarMascota() {
+		String title = "Contar Mascota";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+
+		if (i >= 0) {
+			tabs.setSelectedIndex(i);
+		} else {
+			JPanel nuevo = MascotasFrame.contarMascota(controller);
+			crearNuevoTab(title, borrar, nuevo);
+
+		}
+
+	}
+
+	public boolean cambiarVisibilidadTab() {
+		boolean borrar = false;
+		if (!tabs.isVisible()) {
+			tabs.setVisible(true);
+			borrar = true;
+
+		}
+		return borrar;
+	}
+
+	public void crearNuevoTab(String title, boolean borrar, JPanel nuevo) {
+		tabs.addTab(title, nuevo);
+		int i = tabs.indexOfTab(title);
+		tabs.setTabComponentAt(i, TitlePanel.getCloseTitlePanel(tabs, nuevo, title));
+		tabs.setSelectedIndex(i);
+		if (borrar) {
+			tabs.removeTabAt(0);
+		}
+	}
+
+	public void nuevoDueño() {
+		String title = "Nuevo Dueño";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+
+		if (i >= 0) {
+			tabs.setSelectedIndex(i);
+		} else {
+			JPanel nuevo = DuenosFrame.nuevoDueno(controller);
+			crearNuevoTab(title, borrar, nuevo);
+
+		}
+
+	}
+
+	public void borrarDueño() {
+		String title = "Borrar Dueño";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+
+		if (i >= 0) {
+			tabs.setSelectedIndex(i);
+		} else {
+			JPanel nuevo = DuenosFrame.borrarDueno(controller);
+			crearNuevoTab(title, borrar, nuevo);
+
+		}
+
+	}
+
+	public void listarDueño() {
+		String title = "Lista Dueños";
+		int i = tabs.indexOfTab(title);
+		boolean borrar = cambiarVisibilidadTab();
+
+		if (i >= 0) {
+			tabs.setSelectedIndex(i);
+		} else {
+			JPanel nuevo = DuenosFrame.listarDuenos(controller);
+			crearNuevoTab(title, borrar, nuevo);
+
+		}
+
+	}
+}

@@ -1,0 +1,123 @@
+package grafica.ventana;
+
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import grafica.controladores.MenuController;
+import grafica.controladores.Controller;
+import javax.swing.KeyStroke;
+import java.awt.event.InputEvent;
+
+public class MainWindow  {
+
+	
+	private JFrame mainFrame;
+	private Controller controller;
+	private MenuController menu;
+	MenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainWindow window = new MainWindow();
+					window.mainFrame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
+	
+	/**
+	 * Create the application.
+	 */
+	public MainWindow() {
+		initialize();
+		controller = new Controller();
+		//menu = new MenuController();
+		mainFrame.setVisible(true);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		mainFrame = new JFrame();
+		mainFrame.setTitle("Concurso de Mascotas");
+		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/grafica/imagenes/dogIcon.png")));
+		mainFrame.getContentPane().setBackground(new Color(30, 144, 255));
+		mainFrame.setBounds(100, 100, 450, 359);
+		mainFrame.getContentPane().setLayout(null);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setLocationRelativeTo(null);
+		
+		UIManager.put("TabbedPane.selected", Color.WHITE);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		tabbedPane.setName("tabbedPane");
+		tabbedPane.setRequestFocusEnabled(false);
+		tabbedPane.setFocusable(false);
+		tabbedPane.setMinimumSize(new Dimension(10, 10));
+		tabbedPane.setPreferredSize(new Dimension(10, 10));
+		tabbedPane.setBackground(Color.LIGHT_GRAY);
+		tabbedPane.setBounds(0, 0, 434, 320);
+		mainFrame.getContentPane().add(tabbedPane);
+		
+		menuBar = new MenuBar(tabbedPane);
+		mainFrame.setJMenuBar(menuBar);
+		
+		
+		
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				JPanel selected = (JPanel) tabbedPane.getComponentAt(tabbedPane.getSelectedIndex());
+				String title = selected.getName();
+				tabbedPane.setTabComponentAt(tabbedPane.getSelectedIndex(), TitlePanel.getCloseTitlePanel(tabbedPane, selected, title));
+				
+				for(int i = 0; i < tabbedPane.getTabCount(); i++)
+				{
+					if (i != tabbedPane.getSelectedIndex())
+					{
+							
+						String name = tabbedPane.getComponentAt(i).getName();
+						tabbedPane.setTabComponentAt(i, TitlePanel.getNormalTitlePanel(tabbedPane, name));
+						tabbedPane.setBackgroundAt(i, Color.LIGHT_GRAY);
+					}
+				}
+			}
+		});
+	}
+	
+}

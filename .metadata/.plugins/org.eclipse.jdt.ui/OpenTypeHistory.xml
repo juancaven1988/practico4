@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=Cocurso de Perro/C:\/Program Files\/Java\/jdk-17.0.2\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/module=/true=/&lt;java.lang(Exception.class[Exception" modifiers="33" timestamp="1645728148156"/>
+    <typeInfo handle="=Cocurso de Perro/src&lt;logicaPersistencia.valueObjects{VOMascota.java[VOMascota" modifiers="1" timestamp="1665105744689"/>
+    <typeInfo handle="=Cocurso de Perro/src&lt;logicaPersistencia.accesoBD{iFachada.java[iFachada" modifiers="513" timestamp="1665177322155"/>
+    <typeInfo handle="=AplicacionWindowsConcursoPerros/C:\/Program Files\/Java\/jdk-17.0.2\/lib\/jrt-fs.jar`java.desktop=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/module=/true=/&lt;javax.swing(JMenuBar.class[JMenuBar" modifiers="33" timestamp="1645728148156"/>
+    <typeInfo handle="=AplicacionWindowsConcursoPerros/C:\/Program Files\/Java\/jdk-17.0.2\/lib\/jrt-fs.jar`java.desktop=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/17\/docs\/api\/=/=/module=/true=/&lt;javax.swing(AbstractAction.class[AbstractAction" modifiers="1057" timestamp="1645728148156"/>
+</typeInfoHistroy>

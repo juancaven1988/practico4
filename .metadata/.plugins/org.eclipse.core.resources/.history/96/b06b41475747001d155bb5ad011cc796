@@ -1,0 +1,28 @@
+package grafica.controladores;
+
+import javax.swing.JTabbedPane;
+
+import grafica.ventana.DuenosFrame;
+
+public class MenuController {
+
+	
+	private JTabbedPane tabs;
+	
+	public MenuController(JTabbedPane tabbedPane)
+	{
+		tabs = tabbedPane;
+	}
+	
+	public void insertarDueno(DuenosFrame dueno) {
+		
+		if(dueno == null)
+		{
+			dueno = new DuenosFrame();
+		}
+		
+		dueno.activarInsertar();
+	}
+	
+	
+}

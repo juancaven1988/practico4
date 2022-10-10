@@ -1,0 +1,29 @@
+package logicaPersistencia.accesoBD;
+
+import java.util.List;
+
+import logicaPersistencia.excepciones.PersistenciaException;
+import logicaPersistencia.excepciones.SolicitudException;
+import logicaPersistencia.valueObjects.VODueno;
+import logicaPersistencia.valueObjects.VOMascota;
+import logicaPersistencia.valueObjects.VOMascotaList;
+
+public interface iFachada {
+
+	public iFachada getInstancia() throws PersistenciaException;
+	
+	public void nuevoDueno(VODueno voD) throws PersistenciaException, SolicitudException;
+	
+	public void nuevaMascota(VOMascota voM, int ced) throws PersistenciaException, SolicitudException;
+
+	public void borrarDuenoMascota(int ced) throws PersistenciaException, SolicitudException;
+	
+	public List<VODueno> listarDuenos() throws PersistenciaException;
+	
+	public List<VOMascotaList> listarMascotaDueno(int ced) throws PersistenciaException, SolicitudException;
+	
+	public VOMascota obtenerMascota(int ced, int num);
+	
+	public int contarMascotas(int ced, String raza);
+	
+}
