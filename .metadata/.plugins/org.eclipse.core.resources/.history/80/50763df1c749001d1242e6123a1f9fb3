@@ -1,0 +1,7 @@
+sena=a159357s
+user=root
+url=jdbc:mysql://localhost:3306/concurso_mascotas
+ipServidor = localhost
+puertoServidor = 1099
+tamano = 3;
+nivel_transaccion = 8;

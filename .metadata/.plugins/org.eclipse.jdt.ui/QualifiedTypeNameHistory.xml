@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.io.Serializable"/>
-    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="java.rmi.server.UnicastRemoteObject"/>
@@ -24,7 +22,6 @@
     <fullyQualifiedTypeName name="javax.swing.AbstractAction"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
     <fullyQualifiedTypeName name="javax.swing.border.BevelBorder"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="javax.xml.crypto.Data"/>
     <fullyQualifiedTypeName name="grafica.ventana.ExceptionWindow"/>
     <fullyQualifiedTypeName name="javax.swing.JTable"/>
@@ -38,10 +35,20 @@
     <fullyQualifiedTypeName name="grafica.ventana.MainWindow"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
-    <fullyQualifiedTypeName name="logicaPersistencia.excepciones.PersistenciaException"/>
     <fullyQualifiedTypeName name="javax.swing.JFrame"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="grafica.ventana.NotificacionExito"/>
     <fullyQualifiedTypeName name="javax.swing.UIManager"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.security.PublicKey"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="javax.lang.model.element.ModuleElement.ExportsDirective"/>
+    <fullyQualifiedTypeName name="logicaPersistencia.excepciones.PersistenciaException"/>
+    <fullyQualifiedTypeName name="logicaPersistencia.accesoBD.IPoolConexiones"/>
+    <fullyQualifiedTypeName name="logicaPersistencia.accesoBD.IConexion"/>
+    <fullyQualifiedTypeName name="logicaPersistencia.accesoBD.Conexion"/>
+    <fullyQualifiedTypeName name="java.lang.InterruptedException"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

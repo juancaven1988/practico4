@@ -198,7 +198,7 @@ public class DuenosFrames {
 					try {
 						controller.crtBorrarDuenoMascota(cedula);
 						NotificacionExito exito = new NotificacionExito(
-								"Dueño " + textCedula.getText() + " insertado correctamente");
+								"Dueño " + textCedula.getText() + " borrado correctamente");
 					} catch (PersistenciaException | SolicitudException e1) {
 						ExceptionWindow error = new ExceptionWindow(ExceptionWindow.ACCION_DISPOSE, e1.getMessage());
 					} catch (RemoteException e2) {
