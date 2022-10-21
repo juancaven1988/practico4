@@ -1,3 +1,7 @@
 GitRepositoriesView.GitDirectories=H\:\\Licenciatura Informatica\\Tercer a\u00F1o\\Base de Datos III\\workspace\\Practico III\\.git;
 GitRepositoriesView.GitDirectories.relative=H\:\\Licenciatura Informatica\\Tercer a\u00F1o\\Base de Datos III\\workspace\\Practico III\\.git;
+core_defaultRepositoryDir=${project_path}
+core_git_servers=
+core_preferredMergeStrategy=jgit-default-mergeStrategy
+core_ssh_default_agent=\\\\.\\pageant
 eclipse.preferences.version=1

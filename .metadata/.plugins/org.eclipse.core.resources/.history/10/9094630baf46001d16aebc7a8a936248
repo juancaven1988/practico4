@@ -1,7 +1,0 @@
-package grafica.controladores;
-
-import javax.swing.JMenuBar;
-
-public class MenuBar extends JMenuBar {
-
-}

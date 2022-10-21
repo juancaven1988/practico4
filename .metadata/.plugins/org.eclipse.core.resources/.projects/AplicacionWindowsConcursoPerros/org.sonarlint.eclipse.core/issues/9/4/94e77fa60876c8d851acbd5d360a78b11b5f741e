@@ -1,0 +1,10 @@
+
+r
+java:S32522">Use static access with "javax.swing.SwingConstants" for "TOP".(û“ÍÉûÿÿÿÿHRCRITICALZ
+CODE_SMELL
+T
+java:S1604@"(Make this anonymous inner class a lambda(á©ÖãHˆRMAJORZ
+CODE_SMELL
+V
+java:S1481 "*Remove this unused "error" local variable.(ÄÅ™H‰RMINORZ
+CODE_SMELL
